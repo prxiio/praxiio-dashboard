@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: praxiio-healthcare
+  labels:
+    app: praxiio
+    environment: production
+    timestamp: "2025-08-27 13:12:47"
+    deployer: prxiio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: praxiio
+  template:
+    metadata:
+      labels:
+        app: praxiio
+    spec:
+      containers:
+      - name: praxiio-app
+        image: praxiio/healthcare:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

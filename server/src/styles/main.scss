@@ -1,0 +1,109 @@
+@import 'variables';
+@import 'mixins';
+@import 'animations';
+
+// Base styles
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $font-family;
+    background-color: $background-dark;
+    color: $text-primary;
+    margin: 0;
+    padding: 0;
+}
+
+// Layout components
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+}
+
+.grid {
+    display: grid;
+    gap: $spacing-md;
+    
+    &--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    &--cols-3 { grid-template-columns: repeat(3, 1fr); }
+    &--cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+// Components
+.card {
+    background-color: $background-light;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-lg;
+    padding: $spacing-lg;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    
+    &--primary {
+        background: linear-gradient(135deg, $primary 0%, darken($primary, 10%) 100%);
+        color: white;
+        
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba($primary, 0.3);
+        }
+    }
+    
+    &--secondary {
+        background: $secondary;
+        color: white;
+        
+        &:hover {
+            background: lighten($secondary, 10%);
+        }
+    }
+}
+
+// Utilities
+.text {
+    &-xs { font-size: $font-size-xs; }
+    &-sm { font-size: $font-size-sm; }
+    &-md { font-size: $font-size-md; }
+    &-lg { font-size: $font-size-lg; }
+    &-xl { font-size: $font-size-xl; }
+}
+
+.font {
+    &-normal { font-weight: 400; }
+    &-medium { font-weight: 500; }
+    &-semibold { font-weight: 600; }
+    &-bold { font-weight: 700; }
+}
+
+// Animations
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

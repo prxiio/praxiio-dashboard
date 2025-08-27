@@ -1,0 +1,22 @@
+{
+  "name": "praxiio_dashboard",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "npm install --prefix client && npm run build --prefix client && tsc --project ./server",
+    "dev": "ts-node server/src/index.ts",
+    "watch": "tsc -w --project ./server"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.23",
+    "@types/node": "^18.19.123",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
